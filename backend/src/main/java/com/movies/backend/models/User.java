@@ -2,7 +2,7 @@ package com.movies.backend.models;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Getter
@@ -20,7 +20,6 @@ public class User {
     @JoinTable(name = "user_roles",
         joinColumns = @JoinColumn(name = "user_id"),
         inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
-
-
+    private Set<Role> roles = new HashSet<>();
+    
 }

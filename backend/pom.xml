@@ -26,10 +26,10 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<!-- added spring security here -->
-		<dependency>
+		<!-- <dependency>
     		<groupId>org.springframework.boot</groupId>
     		<artifactId>spring-boot-starter-security</artifactId>
-  		</dependency>
+  		</dependency> -->
 		<!-- added Lombok here -->
 		<dependency>
     		<groupId>org.projectlombok</groupId>
