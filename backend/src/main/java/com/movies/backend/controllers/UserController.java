@@ -28,18 +28,24 @@ public class UserController {
 
     @Autowired
     MovieRepository movieRepository;
+    @Autowired
     RatingRepository ratingRepository;
 
     // get a list of all movies
     @GetMapping("/movies")
     // match the id rating id to movie id to get rating for each record and display avg(movie id) = rating
     public @ResponseBody Iterable<Movie> getAllMovies() {
+        
         return movieRepository.findAll();
     }
 
     @PostMapping("/rating/{id}")
     public ResponseEntity<Rating> rateMovie(@PathVariable("id") Long id, @RequestBody Rating r) {
         try {
+            // Rating newRating = new Rating();
+            // newRating.setMovieId(id);
+            // newRating.setScore(r.getScore());
+            // ratingRepository.save(newRating);
             Rating _rating = ratingRepository.save(new Rating(id, r.getScore()));
             return new ResponseEntity<>(_rating, HttpStatus.OK);
         } catch (Exception e) {

@@ -1,9 +1,9 @@
-package com.movies.backend.repositories;
+// package com.movies.backend.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+// import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.movies.backend.models.Role;
+// import com.movies.backend.models.Role;
 
-public interface RoleRepository extends JpaRepository<Role, Long> {
-    Role findByName(String name);
-}
+// public interface RoleRepository extends JpaRepository<Role, Long> {
+//     Role findByName(String name);
+// }
