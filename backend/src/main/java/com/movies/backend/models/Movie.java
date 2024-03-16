@@ -1,7 +1,5 @@
 package com.movies.backend.models;
 
-import org.springframework.beans.factory.annotation.Value;
-
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,8 +18,7 @@ public class Movie {
 
     private String trailer;
 
-    @Value("{0}")
-    private Double rating;
+    private Double rating = 0.0;
 
     public Movie () {}
 

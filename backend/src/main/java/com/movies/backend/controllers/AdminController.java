@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.movies.backend.models.Movie;
 import com.movies.backend.repositories.MovieRepository;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 // import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -56,12 +57,32 @@ public class AdminController {
         Optional<Movie> movieData = movieRepository.findById(id);
         if(movieData.isPresent()) {
             Movie _movie = movieData.get();
+
+            if(m.getTitle() != null) {
             _movie.setTitle(m.getTitle());
-            _movie.setGenre(m.getGenre());
-            _movie.setRating(m.getRating());
-            _movie.setTrailer(m.getTrailer());
-            return new ResponseEntity<>(_movie, HttpStatus.OK);
+            }
+            if(m.getGenre() != null) {
+                _movie.setGenre(m.getGenre());
+            }
+            if(m.getRating() != null) {
+                _movie.setRating(m.getRating());
+            }
+            if(m.getTrailer() != null) {
+                _movie.setTrailer(m.getTrailer());
+            }
+            return new ResponseEntity<>(movieRepository.save(_movie), HttpStatus.OK);
         } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // delete method
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Movie> deleteMovie(@PathVariable("id") Long id) {
+        try {
+            movieRepository.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
